@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .medicine-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .add-medicine {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .add-medicine input, .add-medicine select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .add-medicine button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            gap:30px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-medicine button:hover {
+            background-color: #00796b;
+        }
+
+        .medicine-list {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .medicine-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .medicine-list th, .medicine-list td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .medicine-list th {
+            background-color: #f2f2f2;
+        }
+
+        .added-medicine span {
+            margin-right: 5px;
+        }
+        .medicine-list {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .medicine-list table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .medicine-list td {
+            padding: 8px;
+            text-align: left;
+            border: none;
+        }
+
+        .medicine-list th {
+            background-color: #f2f2f2;
+            border: none;
+        }
+        .reminder-list {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .reminder-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .reminder-list li {
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .reminder-list li:hover {
+            background-color: #f2f2f2;
+        }
+
+        .reminder-list li.no-border {
+            border: none;
+        }
+        .added-medicine-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .added-medicine-list li {
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .added-medicine-list li:hover {
+            background-color: #f2f2f2;
+        }
+
+        .added-medicine-list li.selected {
+            background-color: #00796b;
+            color: white;
+        }
+        .selected {
+            background-color: #00796b;
+            color: white;
+        }
+        .reminder-list li {
+            /* ... (your existing styles remain unchanged) ... */
+            cursor: pointer;
+        }
+
+        .reminder-list li:hover {
+            background-color: #f2f2f2;
+        }
+
+        .delete-option {
+            display: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .delete-option:hover {
+            color: red;
+        }
+
+        .added-medicine-list li:hover .delete-option {
+            display: inline;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="medicine-container">
+        <div class="add-medicine">
+            <input type="text" id="medicine-name" placeholder="Medicine Name">
+            <input type="date" id="expiry-date">
+            <button onclick="addMedicine()">Add</button>
+        </div>
+
+        <!-- Added Medicine list -->
+        <div class="added-medicine-list">
+            <ul id="addedMedicineList"></ul>
+        </div>
+
+        <!-- Reminder list -->
+        <div class="reminder-list">
+            <ul>
+                <li onclick="filterMedicine(30)" class="no-border"> Expiring in &lt;30</li>
+                <li onclick="filterMedicine(60)" class="no-border">Expiring in &lt;60</li>
+                <li onclick="showAllMedicines()" class="no-border">All Medicines</li>
+            </ul>
+        </div>
+
+        <div class="medicine-list" id="medicineList">
+            <table>
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>Medicine Name</th>
+                        <th>Expiry Date</th>
+                        <th>Qty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Added medicines will appear here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="emailbox" id="lm">
+        </div>
+    </div>
+    <script>
+          const addedMedicineList = [];45
+     var user="";
+function addMedicine() {
+    const medicineNameInput = document.getElementById("medicine-name");
+    const expiryDateInput = document.getElementById("expiry-date");
+    const d= new Date();
+    const medicineName = medicineNameInput.value.trim();
+    const expiryDate = new Date(expiryDateInput.value);
+    if (medicineName && expiryDate) {
+        addedMedicineList.push({ name: medicineName, expiryDate: expiryDate });
+        if(expiryDate.toLocaleDateString()<=d.toLocaleDateString())
+        {
+        fetch(`http://localhost:5050/showmedicine`)
+            .then((response)=>{
+            return response.json()
+            })
+            .then((data)=>{
+                user=data.message;
+                //alert(`Dear ${user},The medicine ${medicineName} has already expired !!`);
+            })
+ }
+        ///alert(`Dear ${user},The medicine ${medicineName} has already expired !!`);
+        updateAddedMedicineList();
+        displayAllMedicines();
+
+        // Clear inputs
+        medicineNameInput.value = "";
+        expiryDateInput.value = "";
+    }
+}
+
+function updateAddedMedicineList() {
+    const addedMedicineListElem = document.getElementById("addedMedicineList");
+    addedMedicineListElem.innerHTML = "";
+
+    addedMedicineList.forEach((medicine, index) => {
+        const li = document.createElement("li");
+        li.textContent = medicine.name;
+        li.onclick = () => displayMedicineDetails(index);
+        addedMedicineListElem.appendChild(li);
+    });
+}
+
+function displayMedicineDetails(index) {
+    const selectedMedicine = addedMedicineList[index];
+    alert(`Medicine Name: ${selectedMedicine.name}``Expiry Date: ${selectedMedicine.expiryDate.toLocaleDateString()}`);
+}
+function displayAllMedicines() {
+    const medicineList = document.querySelector("#medicineList tbody");
+    medicineList.innerHTML = "";
+    fetch(`http://localhost:5050/showmedicine`)
+    .then((response)=>{
+            return response.json()
+        })
+    .then((data)=>{
+        console.log(data);
+        addedMedicineList.forEach(medicine => {
+        const row = medicineList.insertRow();
+        const Userid=row.insertCell(-1);
+        const medicineNameCell = row.insertCell(-1);
+        const expiryDateCell = row.insertCell(-1);
+        Userid.textContent=data.message;
+        user=data.message;
+        medi=medicine.name;
+        medicineNameCell.textContent = medi;
+        exp=medicine.expiryDate.toLocaleDateString();
+        expiryDateCell.textContent = exp
+    })
+    fetch(`http://localhost:5050/postusermedic`, {
+             method: "POST",
+             headers: {
+            "Content-type": "application/json; charset=UTF-8"
+         },
+         body: JSON.stringify({
+          "UserId":user,
+          "MedicineName":medi,
+          "ExpiryDate": exp
+      })
+  })
+  .then((response)=> {
+    console.log(response.status)
+    return response.json()
+  })
+  .then((data) => {
+      console.log(data);
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+  })
+}
+
+function filterMedicine(days) {
+            const medicineList = document.querySelector("#medicineList tbody");
+            medicineList.innerHTML = "";
+            fetch(`http://localhost:5050/showusermedicine`)
+            .then((response)=>{
+            return response.json()
+            })
+            .then((data)=>{
+                const today = new Date();
+                const filteredMedicine = data.filter(medicine => {
+                const expiry=new Date(medicine.ExpiryDate);
+                const diffTime = Math.abs(today-expiry);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays <= days;
+            });
+            if(filteredMedicine.length!=0)
+            {
+                filteredMedicine.forEach(medicine => {
+                const row = medicineList.insertRow();
+                const Userid=row.insertCell(-1);
+               const medicineNameCell = row.insertCell(-1);
+               const expiryDateCell = row.insertCell(-1);
+               Userid.textContent=medicine.UserId;
+               usermail=medicine.UserId
+              medicineNameCell.textContent = medicine.MedicineName;
+              expiryDateCell.textContent = medicine.ExpiryDate;
+            });
+          }
+          else
+          {
+            alert("Great!none of your medications have crossed the limit!!");
+          }
+        })
+      }
+        function showAllMedicines() {
+            const medicineList = document.querySelector("#medicineList tbody");
+            medicineList.innerHTML = "";
+            fetch(`http://localhost:5050/showusermedicine`)
+            .then((response)=>{
+            return response.json()
+            })
+            .then((data)=>{
+                console.log(data);
+                for(var i=0;i<data.length;i++)
+                {
+                const row = medicineList.insertRow();
+                const Userid=row.insertCell(-1);
+                const medicineNameCell = row.insertCell(-1);
+                const expiryDateCell = row.insertCell(-1);
+                Userid.textContent=data[i].UserId;
+                medicineNameCell.textContent = data[i].MedicineName;
+                expiryDateCell.textContent = data[i].ExpiryDate;
+                }
+        })
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Clinic - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #00796b;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 360px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background-color: #00796b;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.plus-sign {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.doctor {
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.clinic-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-form {
+    padding: 20px;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin: 0 0 20px;
+}
+
+.login-form p {
+    color: #888;
+    margin: 20px 0 0;
+}
+
+.login-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #888;
+}
+
+.login-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.continue-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-form a {
+    color: #393185;
+    text-decoration: none;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="WhatsApp_Image_2024-06-24_at_21.28.32_c34dd0c9-removebg-preview (1).png" alt="Doctor" class="doctor">
+            <div class="clinic-name">My Clinic</div>
+        </div>
+        <div class="login-form">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit" class="continue-btn" >Login</button>
+            </form>
+            <p>Don't have an account? <a href="register.html">Register</a></p>
+        </div>
+    </div>
+</body>
+</html>
