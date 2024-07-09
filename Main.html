@@ -1,0 +1,270 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Solution</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: left;
+            padding: 10px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        header input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .category {
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .category img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+
+        .category span {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .banner {
+            display: flex;
+            align-items: center;
+            background-color: #e0f7fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .banner img {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+        }
+
+        .banner-content {
+            flex-grow: 1;
+        }
+
+        .banner-content h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .banner-content button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .section-header a {
+            font-size: 14px;
+            color: #00796b;
+            text-decoration: none;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .card-content h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-item img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+            color: #004d4d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Find your desired health solution</h1>
+            <input type="text" placeholder="Search doctor, drugs, articles...">
+        </header>
+        <div class="categories">
+            <a href="#" class="category">
+                <img src="sethiscope.jpg" alt="Doctor">
+                <span>Doctor</span>
+            </a>
+            <a href="#" class="category">
+                <img src="pharmacy.jpg" alt="Pharmacy">
+                <span>Pharmacy</span>
+            </a>
+            <a href="#" class="category">
+                <img src="hospital.png" alt="Hospital">
+                <span>Hospital</span>
+            </a>
+            <a href="#" class="category">
+                <img src="ambulance.png" alt="Ambulance">
+                <span>Ambulance</span>
+            </a>
+        </div>
+        <div class="banner">
+            <div class="banner-content">
+                <h2>Early protection for your family health</h2>
+                <button>Learn more</button>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h2>Top Doctor</h2>
+                <a href="#">See all</a>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <img src="images/doctor1.png" alt="Dr. Marcus Horiz">
+                    <div class="card-content">
+                        <h3>Dr. Marcus Horiz</h3>
+                        <p>Cardiologist</p>
+                        <p>⭐⭐⭐⭐⭐ 800m away</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/doctor2.png" alt="Dr. Maria Elena">
+                    <div class="card-content">
+                        <h3>Dr. Maria Elena</h3>
+                        <p>Psychologist</p>
+                        <p>⭐⭐⭐⭐⭐ 1.5km away</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/doctor3.png" alt="Dr. Stevi Jessi">
+                    <div class="card-content">
+                        <h3>Dr. Stevi Jessi</h3>
+                        <p>Orthopedist</p>
+                        <p>⭐⭐⭐⭐⭐ 2km away</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar">
+        <a href="#" class="nav-item">
+            <img src="home.jpg" alt="Home">
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <img src="map.jpg" alt="Map">
+            <span>Map</span>
+        </a>
+        <a href="add_medicne.html" class="nav-item">
+            <img src="add.jpg" alt="Add">
+            <span>Add</span>
+        </a>
+        <a href="#" class="nav-item">
+            <img src="notices.png" alt="Notices">
+            <span>Notices</span>
+        </a>
+        <a href="#" class="nav-item">
+            <img src="profile.png" alt="Profile">
+            <span>Profile</span>
+        </a>
+    </nav>
+</body>
+</html>
