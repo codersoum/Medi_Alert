@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "name": "Medi-Alert",
+    "builds": [
+      {
+        "src": "medialert/**/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "servmed.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/servmed.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/medialert/$1"
+      }
+    ]
+  }
+  
